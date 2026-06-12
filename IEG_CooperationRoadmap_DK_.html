@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEG × Rybners | Korea–Denmark Green TVET Vision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dk-red:  #C8102E;
+  --dk-wht:  #F5F0E8;
+  --kr-navy: #003478;
+  --green:   #2E7D52;
+  --gold:    #C9941A;
+  --ink:     #111820;
+  --mist:    #EEF1F5;
+  --mid:     #6B7989;
+  --border:  #D4D9E2;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans:  'DM Sans', sans-serif;
+  --mono:  'Space Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:#FAFAF7;color:var(--ink);line-height:1.6;font-size:15px}
+
+/* ── COVER ── */
+.cover{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:64px 72px}
+.cover-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 65% 55% at 115% 5%, rgba(200,16,46,.4) 0%,transparent 55%),
+  radial-gradient(ellipse 55% 65% at -15% 95%, rgba(46,125,82,.28) 0%,transparent 55%),
+  linear-gradient(158deg,#001540 0%,#003478 52%,#001a3a 100%)}
+.cover-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:48px 48px}
+.cover-cross{position:absolute;top:0;right:0;width:360px;height:360px;opacity:.06}
+.cover-cross::before{content:'';position:absolute;top:0;left:124px;width:64px;height:360px;background:var(--dk-wht)}
+.cover-cross::after{content:'';position:absolute;top:146px;left:0;width:360px;height:64px;background:var(--dk-wht)}
+
+.flags{position:absolute;top:48px;right:72px;display:flex;gap:12px;align-items:center;opacity:.85}
+.flag{width:40px;height:28px;border-radius:3px;overflow:hidden;position:relative}
+.flag-dk{background:var(--dk-red)}
+.flag-dk::before{content:'';position:absolute;top:0;left:13px;width:5px;height:100%;background:var(--dk-wht)}
+.flag-dk::after{content:'';position:absolute;top:11px;left:0;height:5px;width:100%;background:var(--dk-wht)}
+.flag-kr{background:white}
+.flag-kr::before{content:'🇰🇷';font-size:28px;position:absolute;top:-2px;left:4px}
+.flag-sep{width:1px;height:32px;background:rgba(255,255,255,.3)}
+
+.cover-label{position:relative;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px;display:flex;align-items:center;gap:12px;animation:fadeUp .7s ease .1s both}
+.cover-label::before{content:'';display:inline-block;width:32px;height:1px;background:var(--dk-red)}
+.cover-title{position:relative;font-family:var(--serif);font-size:clamp(36px,5.6vw,64px);line-height:1.08;color:#fff;margin-bottom:12px;animation:fadeUp .8s ease .25s both}
+.cover-title em{font-style:italic;color:rgba(255,255,255,.55)}
+.cover-sub{position:relative;font-size:16px;color:rgba(255,255,255,.62);font-weight:300;margin-bottom:6px;max-width:600px;line-height:1.7;animation:fadeUp .8s ease .38s both}
+.cover-sub-dk{position:relative;font-size:13px;color:rgba(255,255,255,.32);font-weight:300;font-style:italic;margin-bottom:48px;max-width:600px;animation:fadeUp .8s ease .44s both}
+.cover-meta-row{position:relative;display:flex;gap:32px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding-top:28px;animation:fadeUp .8s ease .55s both}
+.cover-meta-item .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.36);margin-bottom:4px}
+.cover-meta-item .val{font-size:13px;font-weight:500;color:rgba(255,255,255,.85)}
+.cover-meta-item .val.accent{color:#70D5B0}
+
+/* ── NAV ── */
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 72px;display:flex;align-items:center;gap:8px;height:52px}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--kr-navy);margin-right:8px;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-link{font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);text-decoration:none;padding:6px 12px;border-radius:4px;transition:all .2s}
+.nav-link:hover{color:var(--kr-navy);background:var(--mist)}
+
+/* ── LAYOUT ── */
+.container{max-width:1040px;margin:0 auto;padding:0 72px}
+.section{padding:84px 0}
+.section+.section{border-top:1px solid var(--border)}
+
+/* ── TYPOGRAPHY ── */
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dk-red);margin-bottom:5px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.eyebrow-dk{font-size:10px;color:var(--mid);font-style:italic;margin-bottom:18px;font-weight:300}
+.sec-title{font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);color:var(--kr-navy);line-height:1.18;margin-bottom:4px}
+.sec-title-dk{font-size:14px;color:var(--mid);font-style:italic;font-weight:300;margin-bottom:16px}
+.sec-lead{font-size:14.5px;color:var(--mid);max-width:640px;margin-bottom:52px;line-height:1.8}
+.dk{display:block;font-size:11px;color:var(--mid);font-style:italic;margin-top:2px;font-weight:300;line-height:1.5}
+
+/* ── CONVERGENCE SECTION ── */
+.conv-grid{display:grid;grid-template-columns:1fr 48px 1fr;align-items:stretch;gap:0;margin-bottom:56px}
+.conv-side{display:flex;flex-direction:column;gap:2px}
+.conv-center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;position:relative}
+.conv-center::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(180deg,transparent,var(--border) 20%,var(--border) 80%,transparent)}
+
+.conv-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:24px 26px;position:relative;overflow:hidden}
+.conv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.conv-card.rybners::before{background:var(--dk-red)}
+.conv-card.ieg::before{background:var(--kr-navy)}
+
+.conv-org{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.conv-need-title{font-family:var(--serif);font-size:15px;color:var(--ink);margin-bottom:4px;line-height:1.3}
+.conv-need-dk{font-size:11px;color:var(--mid);font-style:italic;margin-bottom:10px}
+.conv-need-body{font-size:13px;color:#4A5568;line-height:1.7}
+
+.match-node{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin:4px auto;position:relative;z-index:1}
+.match-node.green{background:rgba(46,125,82,.12);border:1.5px solid rgba(46,125,82,.3)}
+.match-node.gold{background:rgba(201,148,26,.12);border:1.5px solid rgba(201,148,26,.3)}
+.match-node.navy{background:rgba(0,52,120,.1);border:1.5px solid rgba(0,52,120,.25)}
+
+/* ── INTERSECTION CARDS (full-width) ── */
+.intersection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0}
+.int-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:30px 26px;position:relative;overflow:hidden;transition:box-shadow .25s,transform .2s}
+.int-card:hover{box-shadow:0 10px 36px rgba(0,52,120,.09);transform:translateY(-2px)}
+.int-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.int-card:nth-child(1)::after{background:var(--green)}
+.int-card:nth-child(2)::after{background:var(--gold)}
+.int-card:nth-child(3)::after{background:var(--kr-navy)}
+.int-icon{font-size:28px;margin-bottom:14px}
+.int-theme{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.int-title{font-family:var(--serif);font-size:17px;color:var(--ink);margin-bottom:4px;line-height:1.3}
+.int-title-dk{font-size:11.5px;color:var(--mid);font-style:italic;margin-bottom:12px}
+.int-body{font-size:13px;color:#4A5568;line-height:1.72}
+
+/* ── OUTCOME TIMELINE ── */
+.outcome-track{position:relative;padding-left:48px}
+.outcome-track::before{content:'';position:absolute;left:16px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--kr-navy) 0%,var(--green) 50%,var(--gold) 100%)}
+.outcome-block{position:relative;margin-bottom:32px}
+.outcome-block:last-child{margin-bottom:0}
+.ob-dot{position:absolute;left:-40px;top:6px;width:16px;height:16px;border-radius:50%;border:3px solid #fff;z-index:1}
+.ob-dot-1{background:var(--kr-navy);box-shadow:0 0 0 3px rgba(0,52,120,.18)}
+.ob-dot-2{background:var(--green);box-shadow:0 0 0 3px rgba(46,125,82,.18)}
+.ob-dot-3{background:var(--gold);box-shadow:0 0 0 3px rgba(201,148,26,.18)}
+.ob-dot-4{background:var(--dk-red);box-shadow:0 0 0 3px rgba(200,16,46,.18)}
+.ob-inner{background:#fff;border:1px solid var(--border);border-radius:12px;padding:26px 28px}
+.ob-time{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:5px}
+.ob-title{font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:3px}
+.ob-title-dk{font-size:12px;color:var(--mid);font-style:italic;margin-bottom:10px}
+.ob-body{font-size:13.5px;color:#4A5568;line-height:1.72;margin-bottom:14px}
+.ob-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ob-tag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
+.t-navy{background:rgba(0,52,120,.08);color:var(--kr-navy)}
+.t-red{background:rgba(200,16,46,.08);color:var(--dk-red)}
+.t-green{background:rgba(46,125,82,.1);color:var(--green)}
+.t-gold{background:rgba(201,148,26,.1);color:var(--gold)}
+
+/* ── SHARED IMPACT TABLE ── */
+.impact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--border);border-radius:14px;overflow:hidden}
+.impact-cell{background:#fff;padding:28px 26px}
+.impact-cell.header{background:var(--kr-navy);padding:20px 26px}
+.impact-org{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px}
+.impact-name{font-size:14px;font-weight:600;color:#fff}
+.impact-icon{font-size:24px;margin-bottom:10px}
+.impact-label{font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.impact-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.impact-list li{font-size:13px;color:#374151;display:flex;gap:8px;line-height:1.55}
+.impact-list li::before{content:'→';color:var(--dk-red);font-size:11px;flex-shrink:0;margin-top:1px}
+
+/* ── NORTH STAR ── */
+.northstar{background:var(--kr-navy);border-radius:16px;padding:56px 64px;position:relative;overflow:hidden}
+.northstar::before{content:'★';font-size:280px;color:rgba(255,255,255,.03);position:absolute;top:-60px;right:-20px;line-height:1;font-family:var(--serif)}
+.ns-label{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:6px}
+.ns-label-dk{font-size:10.5px;color:rgba(255,255,255,.24);font-style:italic;margin-bottom:22px}
+.ns-title{font-family:var(--serif);font-size:clamp(20px,2.8vw,30px);color:#fff;line-height:1.4;max-width:720px;position:relative;margin-bottom:8px}
+.ns-title-dk{font-size:15px;color:rgba(255,255,255,.42);font-style:italic;max-width:680px;position:relative;margin-bottom:32px;line-height:1.6}
+.ns-stats{display:flex;gap:40px;flex-wrap:wrap;position:relative;border-top:1px solid rgba(255,255,255,.1);padding-top:28px}
+.ns-stat .num{font-family:var(--serif);font-size:36px;color:#fff;line-height:1;margin-bottom:4px}
+.ns-stat .num em{font-size:18px;font-style:normal;color:rgba(255,255,255,.5)}
+.ns-stat .desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.4}
+.ns-stat .desc-dk{font-size:10.5px;color:rgba(255,255,255,.28);font-style:italic;margin-top:2px}
+
+/* ── FOOTER ── */
+.footer{padding:38px 72px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fff;font-size:11.5px;color:var(--mid);font-family:var(--mono);flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.04em}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:860px){
+  .container,.sticky-nav{padding:0 24px}
+  .footer{padding:24px;flex-direction:column}
+  .cover{padding:40px 24px}
+  .flags{top:20px;right:24px}
+  .conv-grid{grid-template-columns:1fr;gap:12px}
+  .conv-center{display:none}
+  .intersection-grid,.impact-grid{grid-template-columns:1fr}
+  .ns-stats{gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     COVER
+══════════════════════════════ -->
+<section class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-cross"></div>
+
+  <div class="flags">
+    <div class="flag flag-dk" title="Denmark"></div>
+    <div class="flag-sep"></div>
+    <div class="flag flag-kr" title="Korea"></div>
+  </div>
+
+  <p class="cover-label">Long-Term Cooperation Vision · Langsigtet samarbejdsvision</p>
+
+  <h1 class="cover-title">
+    Where <em>Rybners' Climate</em><br>
+    Mission Meets<br>
+    <em>IEG's</em> Smart Factory
+  </h1>
+
+  <p class="cover-sub">
+    A vision for enduring Korea–Denmark partnership — converging green education
+    philosophy with smart manufacturing expertise to build the next generation
+    of climate-ready industrial talent, together.
+  </p>
+  <p class="cover-sub-dk">
+    En vision for et varigt koreansk-dansk partnerskab — grøn uddannelsesfilosofi møder smart produktionsekspertise
+    for at uddanne fremtidens klimaparate industritalenter i fællesskab.
+  </p>
+
+  <div class="cover-meta-row">
+    <div class="cover-meta-item">
+      <div class="lbl">Partners · Partnere</div>
+      <div class="val">IEG Co., Ltd. × Rybners (DK)</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="lbl">Facilitator</div>
+      <div class="val">ICDK Seoul</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="lbl">Cooperation Horizon · Samarbejdshorisont</div>
+      <div class="val">2026 – 2030+</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="lbl">Ultimate Goal · Overordnet mål</div>
+      <div class="val accent">Global Green TVET Leadership</div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <div class="nav-dot"></div>
+  <span style="font-size:12px;font-weight:600;color:var(--kr-navy);">IEG × Rybners · Long-Term Vision</span>
+  <div class="nav-links">
+    <a class="nav-link" href="#convergence">Convergence</a>
+    <a class="nav-link" href="#intersection">Solutions</a>
+    <a class="nav-link" href="#discussion">Discussion</a>
+    <a class="nav-link" href="#outcomes">Outcomes</a>
+    <a class="nav-link" href="#impact">Impact</a>
+    <a class="nav-link" href="#northstar">Vision</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     01. CONVERGENCE
+══════════════════════════════ -->
+<section class="section" id="convergence">
+  <div class="container">
+    <p class="eyebrow">Section 01 · Convergence</p>
+    <p class="eyebrow-dk">Konvergens — Hvor behov møder kapabilitet</p>
+    <h2 class="sec-title">Where Rybners' Needs Meet<br>IEG's Capabilities</h2>
+    <p class="sec-title-dk">Hvor Rybners' behov møder IEG's kapabiliteter</p>
+    <p class="sec-lead">
+      Rybners is asking a question IEG has spent 17 years building the answer to.
+      The alignment between what the Climate Business School seeks and what IEG delivers
+      is not incidental — it is structural.
+    </p>
+
+    <!-- CONVERGENCE GRID -->
+    <div class="conv-grid">
+
+      <!-- LEFT: Rybners needs -->
+      <div class="conv-side">
+        <div class="conv-card rybners">
+          <div class="conv-org">🇩🇰 Rybners · What they seek</div>
+          <h4 class="conv-need-title">Real-world equipment that makes energy visible</h4>
+          <p class="conv-need-dk">Udstyr der gør energiforbrug synligt i realtid</p>
+          <p class="conv-need-body">Climate Business School needs hands-on training tools where students can actually <em>see</em> the energy consequences of industrial decisions — not just read about them.</p>
+        </div>
+        <div class="conv-card rybners">
+          <div class="conv-org">🇩🇰 Rybners · What they seek</div>
+          <h4 class="conv-need-title">A curriculum bridge between green theory and factory reality</h4>
+          <p class="conv-need-dk">Bro mellem grøn teori og fabriksvirkelighed</p>
+          <p class="conv-need-body">Denmark leads in climate policy. What Rybners lacks is a structured pathway translating that philosophy into job-ready smart manufacturing competencies.</p>
+        </div>
+        <div class="conv-card rybners">
+          <div class="conv-org">🇩🇰 Rybners · What they seek</div>
+          <h4 class="conv-need-title">Global reach for Denmark's green education brand</h4>
+          <p class="conv-need-dk">Global rækkevidde for dansk grøn uddannelse</p>
+          <p class="conv-need-body">Rybners has a world-class climate education framework. What amplifies its impact is deployment at scale — into Asia, into Africa, into developing markets hungry for exactly this model.</p>
+        </div>
+      </div>
+
+      <!-- CENTER: connector nodes -->
+      <div class="conv-center">
+        <div class="match-node green">⚡</div>
+        <div class="match-node gold">🔗</div>
+        <div class="match-node navy">🌍</div>
+      </div>
+
+      <!-- RIGHT: IEG capabilities -->
+      <div class="conv-side">
+        <div class="conv-card ieg">
+          <div class="conv-org">🇰🇷 IEG · What they deliver</div>
+          <h4 class="conv-need-title">Digital twin equipment with live energy & carbon data</h4>
+          <p class="conv-need-dk">Digital tvilling-udstyr med live energi- og CO₂-data</p>
+          <p class="conv-need-body">IEG's smart factory training systems visualise energy consumption, carbon output, and efficiency metrics in real time — turning the factory floor into a climate classroom.</p>
+        </div>
+        <div class="conv-card ieg">
+          <div class="conv-org">🇰🇷 IEG · What they deliver</div>
+          <h4 class="conv-need-title">17 years of modular TVET curriculum engineering</h4>
+          <p class="conv-need-dk">17 års erfaring med modulær TVET-fagplansudvikling</p>
+          <p class="conv-need-body">IEG doesn't sell hardware — it delivers complete training ecosystems. Modular, certification-aligned, and adaptable to any national VET standard, including Denmark's EUX/HTX framework.</p>
+        </div>
+        <div class="conv-card ieg">
+          <div class="conv-org">🇰🇷 IEG · What they deliver</div>
+          <h4 class="conv-need-title">Proven ODA deployment network across developing nations</h4>
+          <p class="conv-need-dk">Dokumenteret ODA-netværk i udviklingslandene</p>
+          <p class="conv-need-body">With completed EDCF and KOICA projects from Africa to Southeast Asia, IEG provides the on-the-ground infrastructure through which Rybners' climate curriculum can reach the world.</p>
+        </div>
+      </div>
+
+    </div><!-- /conv-grid -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     02. SOLUTION INTERSECTION
+══════════════════════════════ -->
+<section class="section" id="intersection">
+  <div class="container">
+    <p class="eyebrow">Section 02 · Solution Intersection</p>
+    <p class="eyebrow-dk">Løsningsskæringspunkter — Hvad vi bygger sammen</p>
+    <h2 class="sec-title">Three Areas Where Our Solutions<br>Become One</h2>
+    <p class="sec-title-dk">Tre områder hvor vores løsninger smelter sammen</p>
+    <p class="sec-lead">
+      The most durable partnerships are built on structural complementarity —
+      not goodwill alone. Here is where IEG and Rybners create something
+      neither could produce independently.
+    </p>
+
+    <div class="intersection-grid">
+
+      <div class="int-card">
+        <div class="int-icon">🏭</div>
+        <div class="int-theme">Solution 01 · Løsning 01</div>
+        <h3 class="int-title">The Climate-Smart Factory Learning Environment</h3>
+        <p class="int-title-dk">Det klimasmarte fabrikslæringsmiljø</p>
+        <p class="int-body">
+          IEG's physical training infrastructure — PLC systems, energy monitoring rigs, 
+          digital twin platforms — becomes the material embodiment of Rybners' 
+          climate curriculum. Students don't study energy efficiency in a classroom; 
+          they engineer it on a live factory floor.
+          <br><br>
+          The result is a new category of training environment: one that teaches 
+          <strong>smart manufacturing through the lens of sustainability</strong> — 
+          a combination that exists nowhere else at this fidelity.
+        </p>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">📜</div>
+        <div class="int-theme">Solution 02 · Løsning 02</div>
+        <h3 class="int-title">A Jointly-Certified Green Manufacturing Qualification</h3>
+        <p class="int-title-dk">En fælles certificeret grøn produktionskvalifikation</p>
+        <p class="int-body">
+          Korea's NCS competency standards and Denmark's EUX/HTX vocational 
+          framework are structurally compatible. A joint certification pathway — 
+          co-designed by IEG and Rybners, facilitated by ICDK — would create 
+          the first bilaterally recognised <strong>Green Smart Manufacturing credential</strong>.
+          <br><br>
+          A qualification that carries weight in Seoul, Copenhagen, and — 
+          critically — in Nairobi, Hanoi, and Manila, where this expertise is 
+          most urgently needed.
+        </p>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">🌍</div>
+        <div class="int-theme">Solution 03 · Løsning 03</div>
+        <h3 class="int-title">A Korea–Denmark Consortium for Global Green TVET</h3>
+        <p class="int-title-dk">Et koreansk-dansk konsortium for global grøn erhvervsuddannelse</p>
+        <p class="int-body">
+          The developing world is industrialising rapidly — and doing so with a 
+          window to build green from the ground up. Neither IEG alone nor Rybners 
+          alone is the complete answer. Together — IEG's hardware, curriculum depth, 
+          and ODA channels combined with Rybners' climate education authority and 
+          the ICDK's diplomatic reach — the consortium <strong>becomes the definitive 
+          global partner</strong> for climate-aligned industrial workforce development.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     02B. MEETING DISCUSSION LENS
+══════════════════════════════ -->
+<section class="section" id="discussion">
+  <div class="container">
+    <p class="eyebrow">Section 02B · From the June 12 Meeting</p>
+    <p class="eyebrow-dk">Fra mødet den 12. juni — Diskussionsperspektiver</p>
+    <h2 class="sec-title">What the First Conversation<br>Already Told Us</h2>
+    <p class="sec-title-dk">Hvad den første samtale allerede afslørede</p>
+    <p class="sec-lead">
+      The June 12 kickoff between IEG and Rybners' leadership and project teams
+      surfaced three concrete entry points — turning this vision from a concept
+      into a working agenda.
+    </p>
+
+    <div class="intersection-grid">
+
+      <div class="int-card">
+        <div class="int-icon">🔧</div>
+        <div class="int-theme">Entry Point 01 · Indgangspunkt 01</div>
+        <h3 class="int-title">A Concrete Door: Rybners' Welding & On/Offshore AMU Centre</h3>
+        <p class="int-title-dk">En konkret dør: Rybners' svejse- og on/offshore AMU-center</p>
+        <p class="int-body">
+          Rybners operates one of Denmark's largest welding technology centres,
+          alongside a wide AMU course catalogue spanning construction, electrical,
+          management, hospitality, and on/offshore trades. Rather than starting
+          from a blank page, the partnership has an existing, high-volume
+          delivery channel to plug into.
+          <br><br>
+          The opening discussion question —
+          <em>"How could IEG's smart factory training solutions integrate into
+          Rybners' existing AMU programmes, particularly welding and on/offshore?"</em> —
+          turns this from an abstract framework into a near-term pilot candidate:
+          <strong>energy-monitoring and digital-twin modules layered onto an
+          AMU course Rybners already runs at scale.</strong>
+        </p>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">🎯</div>
+        <div class="int-theme">Entry Point 02 · Indgangspunkt 02</div>
+        <h3 class="int-title">Two Audiences, One Roadmap</h3>
+        <p class="int-title-dk">To målgrupper, én køreplan</p>
+        <p class="int-body">
+          The roadmap speaks differently depending on who is reading it —
+          and the meeting was structured accordingly.
+          <br><br>
+          For <strong>Chairman Michael Mathiesen and CEO Olaf Rye</strong>, the
+          conversation centred on strategic value: cost-efficient infrastructure
+          (IEG systems at roughly 1/7 the cost of comparable European platforms),
+          new ODA-blended funding channels (Danida × KOICA/EDCF), and the
+          credential and market-positioning upside of being first.
+          <br><br>
+          For <strong>Project Managers Sibel Özcan and Trine Nedergaard
+          Christensen</strong>, the focus was operational: how digital twin and
+          PLC modules slot into existing course delivery, instructor training
+          requirements, and day-to-day classroom logistics — the details that
+          determine whether Year 1's "Proof of Concept" is realistic on the
+          ground.
+        </p>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">💬</div>
+        <div class="int-theme">Entry Point 03 · Indgangspunkt 03</div>
+        <h3 class="int-title">Listening First: A Reverse-Question Strategy</h3>
+        <p class="int-title-dk">Lyt først: En omvendt spørgestrategi</p>
+        <p class="int-body">
+          Instead of presenting the roadmap as a finished proposal, IEG opened
+          by asking Rybners where the fit naturally occurs in their own
+          programmes. This reframes Year 1 ("Proof of Concept") not as IEG's
+          plan being sold to Rybners, but as a <strong>co-authored pilot</strong> —
+          increasing the likelihood of genuine buy-in and giving both sides a
+          shared starting point heading into the facility tour and follow-up
+          discussions.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     03. LONG-TERM OUTCOMES
+══════════════════════════════ -->
+<section class="section" id="outcomes">
+  <div class="container">
+    <p class="eyebrow">Section 03 · Long-Term Outcomes</p>
+    <p class="eyebrow-dk">Langsigtede resultater — Fra vision til virkelighed</p>
+    <h2 class="sec-title">What Long-Term Cooperation<br>Produces</h2>
+    <p class="sec-title-dk">Hvad langsigtet samarbejde producerer</p>
+    <p class="sec-lead">
+      The value of this partnership compounds over time. Each stage builds on the last —
+      deepening the integration, expanding the reach, and ultimately establishing
+      Korea–Denmark as the reference model for green industrial education worldwide.
+    </p>
+
+    <div class="outcome-track">
+
+      <div class="outcome-block">
+        <div class="ob-dot ob-dot-1"></div>
+        <div class="ob-inner">
+          <p class="ob-time">Year 1 · 2026–2027 · 1. år</p>
+          <h3 class="ob-title">Proof of Concept: The Green Smart Factory Classroom</h3>
+          <p class="ob-title-dk">Konceptbevis: Det grønne smarte fabriksklasseværelse</p>
+          <p class="ob-body">
+            IEG equipment is integrated into Rybners' curriculum for the first time. 
+            Students measure real energy consumption, optimise factory layouts through 
+            digital twins, and earn credit toward a jointly-developed qualification. 
+            What emerges is the first prototype of a learning environment that 
+            seamlessly unites Denmark's climate education leadership with Korea's 
+            smart manufacturing depth — a combination that does not yet exist anywhere 
+            in the world.
+          </p>
+          <div class="ob-tags">
+            <span class="ob-tag t-navy">IEG Equipment at Rybners</span>
+            <span class="ob-tag t-red">Joint Curriculum Design</span>
+            <span class="ob-tag t-green">First Certified Cohort</span>
+            <span class="ob-tag t-navy">MOU / LOI Signed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="outcome-block">
+        <div class="ob-dot ob-dot-2"></div>
+        <div class="ob-inner">
+          <p class="ob-time">Year 2 · 2027–2028 · 2. år</p>
+          <h3 class="ob-title">Institutionalisation: The Korea–Denmark Green Manufacturing Standard</h3>
+          <p class="ob-title-dk">Institutionalisering: Den koreansk-danske grønne produktionsstandard</p>
+          <p class="ob-body">
+            The pilot curriculum becomes a formal, bilaterally-accredited programme. 
+            Korea's NCS framework and Denmark's EUX/HTX standards are mapped into 
+            a single qualification architecture — with ICDK facilitating the 
+            inter-governmental recognition agreement. 
+            IEG and Rybners co-publish the world's first 
+            <strong>Green Smart Factory TVET framework</strong>, positioning the 
+            partnership as a standard-setter rather than a course provider.
+          </p>
+          <div class="ob-tags">
+            <span class="ob-tag t-green">Bilateral Accreditation</span>
+            <span class="ob-tag t-navy">NCS ↔ EUX/HTX Alignment</span>
+            <span class="ob-tag t-gold">Published TVET Framework</span>
+            <span class="ob-tag t-red">ICDK Policy Channel Active</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="outcome-block">
+        <div class="ob-dot ob-dot-3"></div>
+        <div class="ob-inner">
+          <p class="ob-time">Year 3–4 · 2028–2029 · 3.–4. år</p>
+          <h3 class="ob-title">Global Deployment: Exporting the Model to Developing Nations</h3>
+          <p class="ob-title-dk">Global udrulning: Eksport af modellen til udviklingslandene</p>
+          <p class="ob-body">
+            The validated Korea–Denmark framework is deployed as a turnkey package — 
+            IEG's hardware, the joint curriculum, and Rybners' climate education 
+            brand — into vocational training centres in Africa and Southeast Asia. 
+            Korea's EDCF and KOICA ODA financing channels, combined with Denmark's 
+            Danida development cooperation funds, provide a blended public finance 
+            mechanism that no single country could unlock alone. 
+            <strong>The consortium bids together. The consortium wins together.</strong>
+          </p>
+          <div class="ob-tags">
+            <span class="ob-tag t-gold">Africa · SE Asia Deployment</span>
+            <span class="ob-tag t-navy">KOICA + EDCF Financing</span>
+            <span class="ob-tag t-red">Danida Linkage</span>
+            <span class="ob-tag t-green">Green Factory Centres Established</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="outcome-block">
+        <div class="ob-dot ob-dot-4"></div>
+        <div class="ob-inner">
+          <p class="ob-time">Year 5+ · 2030 onwards · 5. år og frem</p>
+          <h3 class="ob-title">Legacy: The Reference Model for Climate-Aligned Industrial Education</h3>
+          <p class="ob-title-dk">Arv: Referencemodellen for klimatilpasset industriel uddannelse</p>
+          <p class="ob-body">
+            By 2030, the IEG–Rybners partnership is no longer a bilateral cooperation 
+            — it is a recognised international standard. Governments, international 
+            development organisations (ADB, ILO, UNESCO-UNEVOC), and multinational 
+            manufacturers look to the Korea–Denmark model when designing 
+            climate-responsible workforce development programmes. 
+            The partnership has created something neither country could have claimed alone: 
+            <strong>global authorship over the future of green industrial education.</strong>
+          </p>
+          <div class="ob-tags">
+            <span class="ob-tag t-gold">UNESCO-UNEVOC Recognition</span>
+            <span class="ob-tag t-navy">ADB / ILO Partnership</span>
+            <span class="ob-tag t-green">Global Standard Status</span>
+            <span class="ob-tag t-red">Korea–Denmark Reference Model</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     04. SHARED IMPACT
+══════════════════════════════ -->
+<section class="section" id="impact">
+  <div class="container">
+    <p class="eyebrow">Section 04 · Shared Impact</p>
+    <p class="eyebrow-dk">Fælles impact — Hvad hver partner vinder</p>
+    <h2 class="sec-title">What Each Partner Gains<br>from a Long Horizon</h2>
+    <p class="sec-title-dk">Hvad hver partner vinder på lang sigt</p>
+    <p class="sec-lead">
+      Enduring partnerships are built on reciprocity. Every stakeholder in this
+      alliance accrues compounding value — the longer the cooperation runs,
+      the greater the individual return.
+    </p>
+
+    <div class="impact-grid">
+
+      <div class="impact-cell header" style="grid-row:span 1">
+        <div class="impact-org">Lead Proposer · Teknologipartner</div>
+        <div class="impact-name">🇰🇷 IEG Co., Ltd.</div>
+      </div>
+      <div class="impact-cell header">
+        <div class="impact-org">Climate Business School · Uddannelsespartner</div>
+        <div class="impact-name">🇩🇰 Rybners</div>
+      </div>
+      <div class="impact-cell header">
+        <div class="impact-org">Innovation Centre · Brobygger</div>
+        <div class="impact-name">🏛️ ICDK Seoul</div>
+      </div>
+
+      <div class="impact-cell">
+        <div class="impact-icon">🏆</div>
+        <div class="impact-label">Strategic Gains · Strategiske gevinster</div>
+        <ul class="impact-list">
+          <li>European market entry credential via Rybners partnership</li>
+          <li>Danish green brand amplifies IEG's developing-country TVET positioning</li>
+          <li>Digital twin & energy modules validated at international standard</li>
+          <li>New joint ODA financing channels (Danida + KOICA/EDCF blended)</li>
+          <li>Global reference credential enabling ADB / ILO procurement</li>
+        </ul>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-icon">🌱</div>
+        <div class="impact-label">Strategic Gains · Strategiske gevinster</div>
+        <ul class="impact-list">
+          <li>Access to Korea's smart manufacturing hardware depth</li>
+          <li>Structured pathway from climate theory to job-ready competencies</li>
+          <li>Asia & developing-world deployment partner at scale</li>
+          <li>First bilaterally-recognised Green Manufacturing qualification</li>
+          <li>Global authorship of a new TVET standard category</li>
+        </ul>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-icon">🔗</div>
+        <div class="impact-label">Strategic Gains · Strategiske gevinster</div>
+        <ul class="impact-list">
+          <li>Concrete, scalable Korea–Denmark innovation partnership case</li>
+          <li>Bilateral education policy cooperation model for both governments</li>
+          <li>Danida × KOICA blended development finance channel opened</li>
+          <li>EU–Asia TVET diplomatic bridge role strengthened</li>
+          <li>UNESCO-UNEVOC & ADB engagement opportunities created</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     05. NORTH STAR VISION
+══════════════════════════════ -->
+<section class="section" id="northstar">
+  <div class="container">
+    <p class="eyebrow">Section 05 · The North Star</p>
+    <p class="eyebrow-dk">Ledestjernen — Den fælles vision</p>
+
+    <div class="northstar">
+      <p class="ns-label">Shared Vision · Fælles vision</p>
+      <p class="ns-label-dk">Hvad vi bygger mod — 2026 til 2030 og frem</p>
+      <h2 class="ns-title">
+        By 2030, when a developing nation asks who should build their
+        climate-ready industrial workforce — the answer is Korea and Denmark, together.
+      </h2>
+      <p class="ns-title-dk">
+        Inden 2030, når et udviklingsland spørger hvem der skal opbygge deres klimaparate industrielle arbejdsstyrke —
+        er svaret Korea og Danmark, sammen.
+      </p>
+
+      <div class="ns-stats">
+        <div class="ns-stat">
+          <div class="num">3<em>+</em></div>
+          <div class="desc">Continents reached<br>through joint ODA deployment</div>
+          <div class="desc-dk">Kontinenter nået via fælles ODA</div>
+        </div>
+        <div class="ns-stat">
+          <div class="num">1<em>st</em></div>
+          <div class="desc">Bilaterally-recognised<br>Green Smart Manufacturing credential</div>
+          <div class="desc-dk">Bilateral grøn produktionskvalifikation</div>
+        </div>
+        <div class="ns-stat">
+          <div class="num">17<em>yr</em></div>
+          <div class="desc">IEG TVET expertise meets<br>Denmark's climate education leadership</div>
+          <div class="desc-dk">IEG-ekspertise møder dansk klimaundervisning</div>
+        </div>
+        <div class="ns-stat">
+          <div class="num">∞</div>
+          <div class="desc">Compounding value<br>the longer the partnership runs</div>
+          <div class="desc-dk">Voksende værdi over tid</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">IEG Co., Ltd. × Rybners Climate Business School</div>
+  <span>Prepared by Kelly Cho · Global Business Development · June 2026</span>
+  <span>CONFIDENTIAL — For Strategic Use</span>
+</footer>
+
+</body>
+</html>
